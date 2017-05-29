@@ -1,0 +1,434 @@
+'Name: MI.01(E_G2)
+'Version: 2
+'Functionality: Multifunctional
+'Description: Multifunctional Covering all major functionality
+'Epics Covered:
+'-----Test conditions:
+'Step 1 - Perform Hard Power-Reset - STB is switched off and on again
+'Step 2 - Run basic pretesting steps
+'Step 3 - Ensure there are at least 2 recorded or On Demand assets are in My Sky+
+'------Script----
+'----Standby----
+ON 'Turn STB OFF
+(5.0)
+ON 'Takes STB out of Standby
+(3.5)
+'----Navigate through TV Guide
+TVG
+(0.5)
+[loop=4]
+UP
+(1)
+[endloop]
+SEL 'Enter TV Guide
+(1)
+SEL 'Enter TV Guide
+(1)
+[loop=15]
+CH- 'page down through channels in TV Guide
+(1)
+[endloop]
+[loop=4]
+RGT 'look through next 3 programmes
+(1)
+[endloop]
+[loop=10]
+CH+ 'Page up through channels in TV Guide
+(1)
+[endloop]
+[loop=4]
+LFT 'look through previous programmes
+(1)
+[endloop]
+'---Playback and delete recordings with trickmodes---
+SKY 'Go to recordings section of EPG
+(1)
+[loop=2]
+RGT 'Navigate to list of recordings and On Demand
+(0.5)
+[loop=10]
+DWN 'look through recordings / downloaded assets
+(0.5)
+[endloop]
+[loop=5]
+UP 'look through recordings / downloaded assets
+(0.5)
+[endloop]
+RGT
+(0.5)
+SEL 'Go to interim page of asset
+(1)
+RGT 'Overcome if series
+(0.5)
+RGT 'Overcome if series
+(0.5)
+LFT' Overcome if series
+(0.5)
+SEL 'Play recording / downloaded asset for 10 seconds
+(1.5)
+[loop=4]
+0 'Input pin
+(0.5)
+[endloop]
+(10)
+PLA 'Pause recording / downloaded asset
+(2.5)
+RGT
+(0.5)
+[loop=4]
+REW 'Rewind recording / downloaded asset
+(1.5)
+[endloop]
+(20)
+PLA 'Play recording / downloaded asset
+(2.5)
+[loop=10]
+RGT 'Skip to the end of the recording / downloaded asset
+(0.5)
+[endloop]
+PLA
+(0.5)
+BAK
+(0.5)
+BAK
+(0.5)
+SKY 'Navigate to recorings screen
+(0.5)
+[endloop]
+'---------------Channel up in Live TV------------------
+BAK
+(0.5)
+BAK
+(0.5)
+1
+(0.5)
+0
+(0.5)
+1 'DCA to BBC 1
+(0.5)
+[loop=19]
+CH+ 'Channel up to 120 - ITV 4 HD
+(0.5)
+[endloop]
+'-----Record through Miniguide, Cancel through TV Guide then permanently delete asset
+SEL 'Invoke Miniguide
+(0.5)
+[loop=10]
+UP
+(0.5)
+[endloop]
+REC 'Records current programme on channel 110 - Gold
+(3.5)
+BAK
+(0.5)
+SEL 'Invoke Miniguide
+(0.5)
+[loop=12]
+RGT
+(0.5)
+[endloop]
+SEL 'Enter TV guide through mini guide
+(0.5)
+RGT 'highlight channel 120
+(0.5)
+[loop=10]
+UP 'highlight channel 110
+(0.5)
+[endloop]
+RGT
+(0.5)
+REC 'Stop recording current programme / cancel series link
+(0.5)
+TVG 'Return to Hompage
+(0.5)
+DWN
+(0.5)
+SEL
+(0.5)
+SEL
+(0.5)
+SEL 'Go to interim page of top asset
+(0.5)
+[loop=2]
+DWN
+(0.5)
+[endloop]
+[loop=2]
+RGT
+(0.5)
+[endloop]
+[loop=4]
+DWN
+(0.5)
+[endloop]
+[loop=3]
+UP
+(0.5)
+[endloop]
+SEL
+(0.5)
+'--------Downloading a movie and deleting the movie---------
+TVG
+(0.5)
+[loop=4]
+DWN
+(0.5)
+[endloop]
+SEL 'Navigate to Movies section
+(1)
+RGT
+(0.5)
+RGT
+(0.5)
+[loop=4]
+DWN
+(0.5)
+[endloop]
+[loop=4]
+RGT 'Navigate to movie
+(0.5)
+[endloop]
+[loop=2]
+SEL 'Download asset and allow to download for 40 seconds
+(0.5)
+[endloop]
+(40)
+SKY 'Navigate to Recordings section
+(0.5)
+RGT 'Highlight top asset
+(0.5)
+SEL 'Enter interim page of asset
+(0.5)
+RGT
+(0.5)
+RGT
+(0.5)
+DWN 'Highlight Delete on interim page
+(0.5)
+SEL 'Delete asset
+(0.5)
+'---------------Permanantely delete--------------------
+LFT
+(0.5)
+LFT
+(0.5)
+LFT 'Shift left to homepage
+(0.5)
+SEL 'Go back into recordings
+(0.5)
+[loop=9]
+DWN
+(0.5)
+[endloop]
+SEL 'Highlight deleted asset
+(1.5)
+RGT
+(1.5)
+DWN 'Highlight delete forever
+(1.5)
+SEL 'Delete asset forever
+(1.5)
+BAK
+(1.5)
+BAK 'Back to Live TV
+(1.5)
+'-------Search for MOVIE using numbers and swipes--------
+SRV
+(1)
+6
+(1)
+DWN
+(0.5)
+DWN
+(0.5)
+SEL
+(0.5)
+8
+8
+8
+(1)
+4
+4
+4
+(1)
+[loop=4]
+UP
+(0.5)
+[endloop]
+SEL
+(0.5)
+RGT
+(0.5)
+[loop=5]
+DWN
+(0.5)
+[endloop]
+[loop=5]
+UP
+(0.5)
+[endloop]
+SEL
+(0.5)
+DWN
+(0.5)
+RGT
+(0.5)
+BAK
+(1.5)
+BAK 'Back to Live TV
+(4.5)
+'--------------Iteration 2-4 - without recordings-------------------
+[loop=3]
+ON 'Turn STB OFF
+(5.0)
+ON 'Takes STB out of Standby
+(3.5)
+'----Navigate through TV Guide
+TVG
+(0.5)
+[loop=4]
+UP
+(1)
+[endloop]
+SEL 'Enter TV Guide
+(1)
+SEL 'Enter TV Guide
+(1)
+[loop=15]
+CH- 'page down through channels in TV Guide
+(1)
+[endloop]
+[loop=4]
+RGT 'look through next 3 programmes
+(1)
+[endloop]
+[loop=10]
+CH+ 'Page up through channels in TV Guide
+(1)
+[endloop]
+[loop=4]
+LFT 'look through previous programmes
+(1)
+[endloop]
+'-------------Playback and asset with trickmodes-------------
+SKY 'Go to recordings section of EPG
+(1)
+[loop=2]
+RGT 'Navigate to list of recordings and On Demand
+(0.5)
+[loop=10]
+DWN 'look through recordings / downloaded assets
+(0.5)
+[endloop]
+[loop=5]
+UP 'look through recordings / downloaded assets
+(0.5)
+[endloop]
+RGT
+(0.5)
+SEL 'Go to interim page of asset
+(1)
+RGT 'Overcome if series
+(0.5)
+RGT 'Overcome if series
+(0.5)
+LFT' Overcome if series
+(0.5)
+SEL 'Play recording / downloaded asset for 10 seconds
+(1.5)
+[loop=4]
+0 'Input pin
+(0.5)
+[endloop]
+(10)
+PLA 'Pause recording / downloaded asset
+(2.5)
+RGT
+(0.5)
+[loop=4]
+REW 'Rewind recording / downloaded asset
+(1.5)
+[endloop]
+(20)
+PLA 'Play recording / downloaded asset
+(2.5)
+[loop=10]
+RGT 'Skip to the end of the recording / downloaded asset
+(0.5)
+[endloop]
+PLA
+(0.5)
+BAK
+(0.5)
+BAK
+(0.5)
+SKY 'Navigate to recorings screen
+(0.5)
+[endloop]
+'----Channel up in Live TV
+BAK
+(0.5)
+BAK
+(0.5)
+1
+(0.5)
+0
+(0.5)
+1 'DCA to BBC 1
+(0.5)
+[loop=19]
+CH+ 'Channel up to 120 - ITV 4 HD
+(0.5)
+[endloop]
+'-------Search for MOVIE using numbers and swipes--------
+SRV
+(1)
+6
+(1)
+DWN
+(0.5)
+DWN
+(0.5)
+SEL
+(0.5)
+8
+8
+8
+(1)
+4
+4
+4
+(1)
+[loop=4]
+UP
+(0.5)
+[endloop]
+SEL
+(0.5)
+RGT
+(0.5)
+[loop=5]
+DWN
+(0.5)
+[endloop]
+[loop=5]
+UP
+(0.5)
+[endloop]
+SEL
+(0.5)
+DWN
+(0.5)
+RGT
+(0.5)
+BAK
+(1.5)
+BAK 'Back to Live TV
+(4.5)
+[endloop]
+'===================================================================
+'---Created by: Sridhar Gakkoju 18/07/14
+'----Modified by: Jon Ellisdon 03/03/17
+'------Last verified:
+'-------Software version: Q004.002.18.00U
+'--------Time to run:
